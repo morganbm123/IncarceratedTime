@@ -1,0 +1,119 @@
+<html>
+  <head>
+
+<center><font color= #ffffff><font size="15"><center><bold> Inmate: 24463-001</bold><center></size></font></center>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+    body{
+        background-color: #000000
+        }
+    p {
+      text-align: center;
+      font-size: 60px;
+      margin-top: 10px;
+
+    }
+    </style>  </head>
+    <body>
+    <div><span id="iteration"></span></div>
+
+          <div id="myvideo"></div>
+
+          <script async src="https://www.youtube.com/iframe_api"></script>
+
+          <script>
+          var iterations = 0;
+          var player;
+          var videoId='wmMLpt574P0';
+          var startSeconds = 1;  // set your own video start time when loop play
+          var endSeconds = 27010;   // set your own video end time when loop play
+          var playerConfig = {
+            height: '480',
+            width: '100%',
+            videoId: videoId,
+            playerVars: {
+
+              autoplay: 1,            // Auto-play the video on load
+              controls: 0,            // Show pause/play buttons in player
+              showinfo: 0,            // Hide the video title
+              modestbranding: 1,      // Hide the Youtube Logo
+              fs: 1,                  // Hide the full screen button
+              cc_load_policy: 0,      // Hide closed captions
+              iv_load_policy: 3,      // Hide the Video Annotations
+              start: startSeconds,
+              end: endSeconds,
+              autohide: 0, // Hide video controls when playing
+
+            },
+            events: {
+                 'onStateChange': onStateChange,       // reference to Iframe API
+                  onReady: function(e) {              // mute the video when loaded
+                  e.target.mute();
+
+                  }
+                }
+
+          };
+          //excute the video in div
+          function onYouTubePlayerAPIReady() {
+
+            player = new YT.Player('myvideo', playerConfig);
+
+          }
+          //reupload the video when onStateChange=YT.PlayerState.ENDED)
+          function onStateChange(state) {
+            if (state.data === YT.PlayerState.ENDED) {
+              player.loadVideoById({
+                videoId: videoId,
+                startSeconds: startSeconds,
+                endSeconds: endSeconds
+              });
+              iterations++
+
+              if (iterations ==(49460*2)) {
+                player.pauseVideo();
+              }
+
+            }
+          }
+
+          </script>
+
+    <p id="demo"></p>
+
+<p id="demo"></p>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Aug 8, 2026 15:37:25").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is over, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("myVideo").innerHTML = "EXPIRED";
+    myVideo.stop();
+  }
+}, 1000);
+</script>
+</body>
+  </html>
